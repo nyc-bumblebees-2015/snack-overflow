@@ -4,4 +4,6 @@ class Question < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :votes, :as => :votable
   has_many :tags, through: :question_tags
+
+  validates :title, :content, :user_id, presence: true
 end

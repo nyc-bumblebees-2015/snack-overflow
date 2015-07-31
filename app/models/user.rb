@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+
   before_save { |user| user.email.downcase! }
   before_save { |user| user.username.downcase!}
 

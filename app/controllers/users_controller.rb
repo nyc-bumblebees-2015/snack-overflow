@@ -16,13 +16,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: current_user.id)
   end
 
   def edit
+    @user = User.find_by(id: current_user.id)
   end
 
   def update
+    user = User.find_by(id: current_user.id)
+    if user.update(user_params)
+      redirect_to user_path
+    else
+      flash[:errors] = user.errors.full_messages
+      redirect_to edit_user_path
+    end
   end
 
   def destroy

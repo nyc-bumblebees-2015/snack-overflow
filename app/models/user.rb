@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
   validates_uniqueness_of :username,  case_sensitive: false
-  validates :password, presence: true, length: {minimum: 6}, confirmation: true
+  validates :password, length: {minimum: 6}
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 

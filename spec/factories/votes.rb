@@ -17,7 +17,7 @@ FactoryGirl.define do
       association :votable, :factory => :answer
     end
 
-    factory :answer_upvote do
+    factory :answer_downvote do
       value -1
       association :votable, :factory => :answer
     end

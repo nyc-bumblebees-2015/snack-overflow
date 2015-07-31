@@ -4,6 +4,7 @@ class AnswersController < ApplicationController
     answer = Answer.new(answer_params)
     question = Question.find_by(id: params[:question_id])
     answer.question = question
+    answer.user = current_user
     if answer.save
       flash[:success] = "Your answer has been added!"
     else

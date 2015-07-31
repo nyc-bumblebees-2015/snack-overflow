@@ -10,5 +10,16 @@ FactoryGirl.define do
     factory :answer_comment do
       association :commentable, factory: :answer
     end
+
+    factory :invalid_question_comment do
+      content nil
+      association :commentable, factory: :question
+    end
+
+    factory :invalid_answer_comment do
+      content nil
+      association :commentable, factory: :answer
+    end
+
   end
 end

@@ -1,19 +1,27 @@
 require 'rails_helper'
 
 describe Answer do
-  it "belongs to a user" do
-    user = create(:user)
-    answer = create(:answer, user: user)
-    expect(answer).to be_valid
+
+  let (:test_user) { create(:user) }
+  let (:test_question) { create(:question) }
+  let (:test_answer) { create(:answer, user: test_user, question: test_question) }
+
+  it "belongs to a question and a user and has content" do
+    expect(test_answer).to be_valid
   end
 
-  xit "belongs to a question" do 
-
+  it "will not save if it doesn't have content" do 
+    test_answer.content = nil
+    expect(test_answer).to be_invalid
   end
 
-  xit "has content" do 
+  it "will not save if it doesn't belong to a question" do 
+    test_answer.question = nil
+    expect(test_answer).to be_invalid
   end
 
-  xit "will not save if it doesn't have content" do 
+  it "will not save if it doesn't belong to a user" do 
+    test_answer.user = nil
+    expect(test_answer).to be_invalid
   end
 end

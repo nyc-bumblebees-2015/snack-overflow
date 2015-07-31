@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  get 'logout' => 'sessions#delete'
+  delete 'logout' => 'sessions#delete'
   resources :questions do
     resources :answers, only: [:create]
     resources :comments, only: [:create]

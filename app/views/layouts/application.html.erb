@@ -7,6 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header id='nav_bar'>
+    <a href="/">
+      <img src="http://cdn.shopify.com/s/files/1/0302/2969/products/great-cookie-m_and_m-cookie-03_1024x1024.jpg?v=1390499314" width="50" height="50">
+    </a>
+    <div id='nav_links'>
+      <% if current_user %>
+        <%= link_to "Logout", logout_path, method: :delete %>
+        <%= link_to "View Profile", user_path(id: current_user.id) %>
+      <% else %>
+        <%= link_to "Sign In", login_path %>
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+    </div>
+  </header>
 
 <%= yield %>
 

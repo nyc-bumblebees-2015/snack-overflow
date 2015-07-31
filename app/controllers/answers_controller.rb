@@ -7,10 +7,11 @@ class AnswersController < ApplicationController
     answer.user = current_user
     if answer.save
       flash[:success] = "Your answer has been added!"
+      redirect_to root_path
     else
       flash[:error] = answer.errors.full_messages
+      redirect_to root_path 
     end
-    redirect_to question_path(question)
   end
 
   private

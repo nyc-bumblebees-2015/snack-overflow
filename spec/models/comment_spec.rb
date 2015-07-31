@@ -18,5 +18,9 @@ describe Comment do
     expect(@question_comment.commentable).to eq(@question)
   end
 
+  it 'belongs to an answer' do
+    expect(@answer_comment.commentable).to eq(@answer)
+  end
+
 
 end

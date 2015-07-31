@@ -1,6 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_many :questions, through: :question_tags
-
   validates :name, presence: true, length: { minimum: 3 }
+  has_and_belongs_to_many :questions
 end
 

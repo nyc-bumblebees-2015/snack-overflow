@@ -22,5 +22,11 @@ describe Comment do
     expect(@answer_comment.commentable).to eq(@answer)
   end
 
+  it 'does not save invalid comments' do
+    @question_comment.content = nil
+    @answer_comment.content = nil
+    expect(@question_comment).to be_invalid
+    expect(@answer_comment).to be_invalid
+  end
 
 end

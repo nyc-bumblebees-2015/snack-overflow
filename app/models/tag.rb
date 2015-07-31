@@ -1,4 +1,4 @@
 class Tag < ActiveRecord::Base
-  has_many :questions, through: :question_tags
+  has_and_belongs_to_many :questions
 end
 

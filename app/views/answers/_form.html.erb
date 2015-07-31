@@ -1,0 +1,8 @@
+<div class="answer_form">
+  <%= form_tag question_answers_path(question) do %>
+    <div class="content">
+      <%= text_area_tag :content %>
+    </div>
+    <%= submit_tag "Post Your Answer" %>
+  <% end %>
+</div>

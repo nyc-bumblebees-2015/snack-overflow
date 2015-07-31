@@ -1,7 +1,8 @@
-<h1>Show the profile page</h1>
-<%= current_user.id %>
-<%= @user.id %>
-<%= @user.username %>
-
+<h1>Profile</h1>
+<div id='user_profile'>
+  <ul>
+    <li>Name: <%= @user.username %></li>
+    <li>Email: <%= @user.email %></li>
+  </ul>
 <br><br>
 <%= link_to "Edit Profile", edit_user_path %>

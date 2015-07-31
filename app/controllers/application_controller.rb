@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    if !!session[:user_id]
+    if !session[:user_id]
       flash[:error] = "You don't have access to this page"
       redirect_to root_path
     end

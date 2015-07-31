@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150731150606) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.string   "content",     null: false
+    t.text     "content",     null: false
     t.integer  "user_id",     null: false
     t.integer  "question_id", null: false
     t.datetime "created_at",  null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150731150606) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string   "content",          null: false
+    t.text     "content",          null: false
     t.integer  "user_id",          null: false
     t.integer  "commentable_id"
     t.string   "commentable_type"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150731150606) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "title",      null: false
-    t.string   "content",    null: false
+    t.text     "content",    null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

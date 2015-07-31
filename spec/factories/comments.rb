@@ -4,11 +4,11 @@ FactoryGirl.define do
     content { Faker::Lorem.paragraph }
 
     factory :question_comment do
-      commentable_type 'question'
+      association :commentable, factory: :question
     end
 
     factory :answer_comment do
-      commentable_type 'answer'
+      association :commentable, factory: :answer
     end
   end
 end

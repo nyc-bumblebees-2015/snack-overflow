@@ -6,5 +6,4 @@ class Question < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   validates :title, :content, :user_id, presence: true
-
 end

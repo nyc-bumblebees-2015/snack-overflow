@@ -3,7 +3,7 @@ answerer = User.create!(username: 'answerer', password: 'password2', email: 'ans
 commenter = User.create!(username: 'commenter', password: 'password3', email: 'commenter@hotmail.com')
 
 question_1 = Question.create!(title: 'question 1', content: 'what snack is the best?', user: questioner, accepted_answer_id: 1)
-question_2 = Question.create!(title: 'question 2', content: 'what snack is the worst?', user: questioner, accepted_answer_id: 3)
+question_2 = Question.create!(title: 'question 2', content: 'what snack is the worst?', user: questioner)
 
 answer_1 = Answer.create!(content: 'cookies!', question: question_1, user: answerer)
 answer_2 = Answer.create!(content: 'liquorice!', question: question_2, user: answerer)

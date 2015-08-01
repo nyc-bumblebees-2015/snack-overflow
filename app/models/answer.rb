@@ -5,4 +5,8 @@ class Answer < ActiveRecord::Base
   has_many :votes, :as => :votable
 
   validates :content, :user_id, :question_id, presence: true
+
+  def votes_total
+    self.votes.sum("value")
+  end
 end

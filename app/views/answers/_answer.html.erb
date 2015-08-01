@@ -1,0 +1,11 @@
+<div class="answer">
+  <div class="votes answer_votes" data-answer-id="<%= answer.id %>">
+    <a class="upvote" href="#"></a>
+    <div class="votes_total"><%= answer.votes_total %></div>
+    <a class="downvote" href="#"></a>
+  </div>
+
+answered <%= answer.created_at %><br>
+<div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
+
+<%= render partial: 'comments/answer_comment_form', locals: {answer: answer, comment: @comment} %>

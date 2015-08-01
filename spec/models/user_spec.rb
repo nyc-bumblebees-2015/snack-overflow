@@ -52,5 +52,4 @@ describe User do
     user.valid?
     expect(user.errors[:email]).to include("has already been taken")
   end
-
 end

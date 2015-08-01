@@ -1,0 +1,13 @@
+<div class="status_container">
+  <div class="status">
+    <span class="status_label">asked</span>
+    <span class="status_item"><%= time_ago_in_words(question.created_at) %> ago</span>
+  </div>
+
+  <% if question.last_active %>
+    <div class="status">
+      <span class="status_label">active</span>
+      <span class="status_item"><%= time_ago_in_words(question.last_active) %> ago</span>
+    </div>
+  <% end %>
+</div>

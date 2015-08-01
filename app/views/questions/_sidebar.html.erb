@@ -1,0 +1,6 @@
+<div class="sidebar">
+  <%= render partial: "status", locals: {question: @question} %>
+  <% if @question.related_questions %>
+    <%= render partial: "related", locals: {question: @question} %>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+<h1>Edit Question</h1>
+<div class="edit_question question_form">
+  <%= form_for @question do |f| %>
+    <%= render partial: 'form_fields', locals: {f: f} %>
+    <%= f.submit "Update question" %>
+  <% end %>
+</div>

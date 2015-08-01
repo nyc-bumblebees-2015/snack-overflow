@@ -1,53 +1,17 @@
+var upvoteValue = 1;
+var downvoteValue = -1;
+
 $(document).ready(function(){
-  var upvoteValue = 1;
-  var downvoteValue = -1;
 
   $('.question_votes').on('click', 'a.upvote', function(event){
     event.preventDefault();
-    var questionId = $(this).parent().data().questionId;
-    var $votes_total = $(this).siblings('.votes_total')
-    var url = '/questions/' + questionId.toString() + '/votes';
-    var vote = {
-      voteable_type: 'Question',
-      vote_value: upvoteValue
-    };
-
-    $.ajax({
-      url: url,
-      method: 'post',
-      data: vote,
-      dataType: 'json'
-    }).done(function(response){
-      $votes_total.html(response.vote_count); 
-    }).fail(function(error){
-      console.log("ERROR: ", error);
-    })
-
-  });
-
-  $('.question_votes').on('click', 'a.downvote', function(event){
+    var params = getQuestionParams($(this), 'upvote');
+    postVote(params);
+  }).on('click', 'a.downvote', function(event){
     event.preventDefault();
-    var questionId = $(this).parent().data().questionId;
-    var $votes_total = $(this).siblings('.votes_total')
-    var url = '/questions/' + questionId.toString() + '/votes';
-    var vote = {
-      voteable_type: 'Question',
-      vote_value: downvoteValue
-    };
-
-    $.ajax({
-      url: url,
-      method: 'post',
-      data: vote,
-      dataType: 'json'
-    }).done(function(response){
-      $votes_total.html(response.vote_count); 
-    }).fail(function(error){
-      console.log("ERROR: ", error);
-    })
-
+    var params = getQuestionParams($(this), 'downvote');
+    postVote(params);
   });
-
 
   $('.suggested_answers').on('click', '.answer_votes > a.upvote', function(event){
     event.preventDefault();
@@ -56,3 +20,31 @@ $(document).ready(function(){
   });
   
 });
+
+var getQuestionParams = function($elem, voteType){
+  var questionId = $elem.parent().data().questionId;
+  var $votes_total = $elem.siblings('.votes_total')
+  var url = '/questions/' + questionId.toString() + '/votes';
+  var vote = {
+    voteable_type: 'Question',
+    vote_value: (voteType == 'upvote' ? upvoteValue : downvoteValue)
+  };
+  return {
+    url: url, 
+    vote: vote, 
+    votes_total: $votes_total
+  }
+};
+
+var postVote = function(params){
+   $.ajax({
+      url: params.url,
+      method: 'post',
+      data: params.vote,
+      dataType: 'json'
+    }).done(function(response){
+      params.votes_total.html(response.vote_count); 
+    }).fail(function(error){
+      console.log("ERROR: ", error);
+    })
+}

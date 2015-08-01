@@ -1,4 +1,6 @@
 <%= @question.title %>
+<%= render partial: 'comments/question_comment_form', locals: {question: @question, comment: @comment} %>
+
 
 <h2>Your Answer</h2>
 <%= render partial: "answers/form", locals: {question: @question} %>

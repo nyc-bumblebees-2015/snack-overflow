@@ -22,6 +22,14 @@ class Question < ActiveRecord::Base
     self.votes.sum("value")
   end
 
+  def latest_answer
+    self.answers.order(created_at: :desc).first
+  end
+
+  def last_active
+    latest_answer.created_at if latest_answer
+  end
+
   private
   def accepted_answer_belongs_to_question
     unless !accepted_answer || accepted_answer.question == self

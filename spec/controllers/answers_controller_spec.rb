@@ -8,8 +8,7 @@ describe AnswersController do
     let (:invalid_answer) {create(:invalid_answer, user: nil, question: nil)}
 
     before :each do 
-     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(test_user)
-     allow_any_instance_of(ApplicationController).to receive(:logged_in?).and_return(true)
+      set_user_session test_user
     end
 
     context "with valid attributes" do

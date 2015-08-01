@@ -2,8 +2,10 @@
 
 <div class="container">
   <div class="question_main">
-    <div class="question_votes">
+    <div class="votes question_votes">
+      <div class="upvote"></div>
       <%= @question.votes_total %>
+      <div class="downvote"></div>
     </div>
     <div class="question_content">
       <%= @question.content %>
@@ -20,11 +22,7 @@
     <%= render partial: 'comments/question_comment_form', locals: {question: @question, comment: @comment} %>
 
     <div class="suggested_answers">
-      <% @question.answers.each do |answer| %>
-        answered <%= answer.created_at %><br>
-        <div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
-        <%= render partial: 'comments/answer_comment_form', locals: {answer: answer, comment: @comment} %>
-      <% end %>
+    <%= render @question.answers %>
     </div>
 
     <div class="new_answer">

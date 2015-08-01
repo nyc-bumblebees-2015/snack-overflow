@@ -17,11 +17,13 @@
       asked <%= @question.created_at %><br>
       <%= @question.user.username %>
     </div>
+    <%= render partial: 'comments/question_comment_form', locals: {question: @question, comment: @comment} %>
 
     <div class="suggested_answers">
       <% @question.answers.each do |answer| %>
         answered <%= answer.created_at %><br>
         <div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
+        <%= render partial: 'comments/answer_comment_form', locals: {answer: answer, comment: @comment} %>
       <% end %>
     </div>
 

@@ -6,5 +6,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find_by(id: params[:id])
+    @comment = Comment.new
   end
 end

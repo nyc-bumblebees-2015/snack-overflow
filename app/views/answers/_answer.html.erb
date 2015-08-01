@@ -8,4 +8,8 @@
 answered <%= answer.created_at %><br>
 <div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
 
+<div class="answer_comments">
+  <%= render answer.comments %>
+</div>
+
 <%= render partial: 'comments/form', locals: {commentable_type: answer, comment: @comment} %>

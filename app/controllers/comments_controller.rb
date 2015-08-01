@@ -2,12 +2,14 @@ class CommentsController < ApplicationController
   def create
     answer_or_question = get_answer_or_question
     comment = Comment.new(comment_params.merge(commentable: answer_or_question))
+    question = get_question(answer_or_question)
+
     if comment.save
-      # byebug
-      redirect_to question_path(get_question(answer_or_question))
+      flash[:success] = "Your comment has been added!"
+      redirect_to question_path(question)
     else
-      #don't know where to direct to upon failure
-      redirect_to question_path(get_question(answer_or_question))
+      flash[:error] = comment.errors.full_messages
+      redirect_to question_path(question)
     end
   end
 

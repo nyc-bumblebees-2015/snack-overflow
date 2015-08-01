@@ -11,10 +11,12 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    5.times { @question.tags.build }
   end
 
   def create
     @question = Question.new(question_params)
+    @question.tags = tags_params.each { |tag| Tag.first_or_create(name: tag['name']) }
     @question.user = current_user
     if @question.save
       redirect_to @question, notice: "Question created successfully!"
@@ -47,6 +49,10 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :content)
+    params.require(:question).permit(:title, :content, tags_attributes: [:id, :name])
+  end
+
+  def tags_params
+    params[:question][:tags_attributes].values
   end
 end

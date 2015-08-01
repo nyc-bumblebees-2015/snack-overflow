@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     answer_or_question = get_answer_or_question
     comment = Comment.new(comment_params.merge(commentable: answer_or_question))
     if comment.save
-      byebug
+      # byebug
       redirect_to question_path(get_question(answer_or_question))
     else
       #don't know where to direct to upon failure

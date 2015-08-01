@@ -11,7 +11,7 @@
     <a href="/">
       <img src="http://cdn.shopify.com/s/files/1/0302/2969/products/great-cookie-m_and_m-cookie-03_1024x1024.jpg?v=1390499314" width="50" height="50">
     </a>
-    <h1 id='welcome'> Welcome To Snack Overflow</h1>
+    <h1 id='welcome'> SnackOverflow</h1>
     <div id='nav_links'>
       <% if current_user %>
         <%= button_to "Logout", logout_path, :method => 'delete' %>
@@ -22,13 +22,14 @@
       <% end %>
     </div>
   </header>
+  <div class="container">
+    <div> <%= render 'layouts/nav' %> </div>
 
-  <div> <%= render 'layouts/nav' %> </div>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
 
-<% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "flash #{key}" %>
-<% end %>
-<%= yield %>
-
+    <%= yield %>
+  </div>
 </body>
 </html>

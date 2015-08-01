@@ -5,6 +5,7 @@ class Question < ActiveRecord::Base
   has_many :votes, :as => :votable
   has_and_belongs_to_many :tags
   belongs_to :accepted_answer, class_name: "Answer"
+  accepts_nested_attributes_for :tags, reject_if: lambda {|attributes| attributes['name'].blank?}, allow_destroy: true
 
   validates :title, :content, :user_id, presence: true
 

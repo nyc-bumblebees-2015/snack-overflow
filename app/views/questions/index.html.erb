@@ -4,11 +4,7 @@
   <ul>
     <% @recent_questions.each do |question| %>
       <li>
-        <%= question.votes_total %> votes | <%= question.answers.count %> answers | <%= link_to question.title, question %>
-        <br>
-        <% if question.answers.count > 0 %>
-          <%= time_ago_in_words(question.answers.last.created_at) %> ago
-        <% end %>
+        <%= render partial: 'question', locals: {question: question} %>
       </li>
     <% end %>
   </ul>
@@ -18,11 +14,7 @@
   <ul>
     <% @popular_questions.each do |question| %>
       <li>
-        <%= question.votes_total %> votes | <%= question.answers.count %> answers | <%= link_to question.title, question %>
-        <br>
-        <% if question.answers.count > 0 %>
-          <%= time_ago_in_words(question.answers.last.created_at) %> ago
-        <% end %>
+       <%= render partial: 'question', locals: {question: question} %>
       </li>
     <% end %>
   </ul>

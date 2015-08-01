@@ -16,7 +16,7 @@
 
 #nav_links {
   float: right;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-right: 15px;
 }
 
@@ -25,3 +25,19 @@
   border-width: 2px;
 }
 
+#image {
+  list-style-type: none;
+}
+
+#welcome {
+  display: inline;
+  padding-bottom: 10px;
+  font-size: 50px;
+}
+
+#error_box {
+  color: red;
+  border-style: dashed;
+  border-width: 1px;
+  width: 35%;
+}

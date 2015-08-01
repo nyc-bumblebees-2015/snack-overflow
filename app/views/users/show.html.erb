@@ -1,8 +1,9 @@
 <h1>Profile</h1>
 <div id='user_profile'>
   <ul>
+    <li id='image'><%= gravatar_for @user %></li>
     <li>Name: <%= @user.username %></li>
     <li>Email: <%= @user.email %></li>
   </ul>
 <br><br>
-<%= link_to "Edit Profile", edit_user_path %>
+<%= button_to "Edit Profile", edit_user_path, :method => 'get' %>

@@ -10,6 +10,18 @@ class Question < ActiveRecord::Base
 
   validate :accepted_answer_belongs_to_question
 
+  def self.recent
+    Question.order(created_at: :desc).limit(10)
+  end
+
+  def self.most_popular
+    Question.all.sort {|a, b| b.votes_total <=> a.votes_total}.shift(10)
+  end
+
+  def votes_total
+    self.votes.sum("value")
+  end
+
   private
   def accepted_answer_belongs_to_question
     unless !accepted_answer || accepted_answer.question == self

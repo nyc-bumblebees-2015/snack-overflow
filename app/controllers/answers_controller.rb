@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   def create
-    logged_in? 
     answer = Answer.new(answer_params)
     question = Question.find_by(id: params[:question_id])
     answer.question = question
@@ -10,7 +9,7 @@ class AnswersController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = answer.errors.full_messages
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 

@@ -1,0 +1,6 @@
+<h1>Tags</h1>
+<% @tags.each do |tag| %>
+  <div class="tag_category">
+    <%= render partial: tag, locals: {tag: tag} %>
+  </div>
+  <% end %>

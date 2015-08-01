@@ -1,0 +1,5 @@
+<%= question.votes_total %> votes | <%= question.answers.count %> answers | <%= link_to question.title, question %>
+<br>
+<% if question.answers.count > 0 %>
+  asked <%= time_ago_in_words(question.answers.last.created_at) %> ago
+<% end %>

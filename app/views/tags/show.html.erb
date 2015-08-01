@@ -1,0 +1,11 @@
+<h1>Tagged Questions</h1>
+<h2><%= @tag.name %></h2>
+<div class="container">
+  <ul>
+    <% @tag_questions.each do |question| %>
+      <li>
+        <%= render partial: 'questions/question', locals: {question: question} %>
+      </li>
+    <% end %>
+  </ul>
+</div>

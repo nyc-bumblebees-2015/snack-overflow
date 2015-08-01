@@ -5,26 +5,31 @@ $(document).ready(function(){
 
   $('.question_votes').on('click', 'a.upvote', function(event){
     event.preventDefault();
-    var params = getVoteParams($(this), {voteType: 'Question', value: upvoteValue});
-    postVote(params);
+    postVote($(this), {voteType: 'Question', value: upvoteValue});
   }).on('click', 'a.downvote', function(event){
     event.preventDefault();
-    var params = getVoteParams($(this), {voteType: 'Question', value: downvoteValue});
-    postVote(params);
+    postVote($(this), {voteType: 'Question', value: downvoteValue});
   });
 
-  $('.suggested_answers').on('click', '.answer_votes > a.upvote', function(event){
+  $('.suggested_answers').on('click', 'a.upvote', function(event){
     event.preventDefault();
-    var url = '/answers/' + answerId.toString() + '/votes';
-
+    postVote($(this), {voteType: 'Answer', value: upvoteValue});
+  }).on('click', 'a.downvote', function(event){
+    event.preventDefault();
+    postVote($(this), {voteType: 'Answer', value: downvoteValue});
   });
   
 });
 
 var getVoteParams = function($elem, vote){
+  if (vote.voteType == 'Question'){
     var questionId = $elem.parent().data().questionId;
     var url = '/questions/' + questionId.toString() + '/votes';
-  var $votes_total = $elem.siblings('.votes_total')
+  } else {
+    var answerId = $elem.parent().data().answerId;
+    var url = '/answers/' + answerId.toString() + '/votes';
+  }
+  var $votes_total = $elem.siblings('.votes_total');
   var vote = {
     voteable_type: vote.voteType,
     vote_value: vote.value
@@ -36,14 +41,27 @@ var getVoteParams = function($elem, vote){
   }
 };
 
-var postVote = function(params){
+var postVote = function($elem, vote){
+  if (vote.voteType == 'Question'){
+    var questionId = $elem.parent().data().questionId;
+    var url = '/questions/' + questionId.toString() + '/votes';
+  } else {
+    var answerId = $elem.parent().data().answerId;
+    var url = '/answers/' + answerId.toString() + '/votes';
+  }
+  var $votesTotal = $elem.siblings('.votes_total');
+  var vote = {
+    voteable_type: vote.voteType,
+    vote_value: vote.value
+  };
+
    $.ajax({
-      url: params.url,
+      url: url,
       method: 'post',
-      data: params.vote,
+      data: vote,
       dataType: 'json'
     }).done(function(response){
-      params.votes_total.html(response.vote_count); 
+      $votesTotal.html(response.vote_count); 
     }).fail(function(error){
       console.log("ERROR: ", error);
     })

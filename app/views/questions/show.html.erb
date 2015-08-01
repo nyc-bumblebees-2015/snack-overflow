@@ -7,6 +7,11 @@
     </div>
     <div class="question_content">
       <%= @question.content %>
+      <ul>
+        <% @question.tags.each do |tag| %>
+          <li><%= tag.name %></li>
+        <% end %>
+      </ul>
     </div>
     <div>
       asked <%= @question.created_at %><br>
@@ -26,7 +31,4 @@
     </div>
   </div>
 
-  <div class="sidebar">
-    <%= render partial: "status", locals: {question: @question} %>
-  </div>
-</div>
+  <%= render partial: "sidebar", locals: {question: @question} %></div>

@@ -19,7 +19,12 @@
       asked <%= @question.created_at %><br>
       <%= @question.user.username %>
     </div>
-    <%= render partial: 'comments/question_comment_form', locals: {question: @question, comment: @comment} %>
+
+    <div class="display_comments question_comments">
+      <%= render @question.comments %>
+    </div>
+
+    <%= render partial: 'comments/form', locals: {commentable_type: @question, comment: @comment} %>
 
     <div class="suggested_answers">
     <%= render @question.answers %>

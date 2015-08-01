@@ -53,8 +53,4 @@ describe User do
     expect(user.errors[:email]).to include("has already been taken")
   end
 
-  xit "is invalid when passwords do not match" do
-    before { build(:user, :password_confirmation => 'mismatch') }
-    it { should_not be_valid }
-  end
 end

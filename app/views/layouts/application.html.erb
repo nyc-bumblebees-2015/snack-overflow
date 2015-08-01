@@ -11,20 +11,21 @@
     <a href="/">
       <img src="http://cdn.shopify.com/s/files/1/0302/2969/products/great-cookie-m_and_m-cookie-03_1024x1024.jpg?v=1390499314" width="50" height="50">
     </a>
+    <h1 id='welcome'> Welcome To Snack Overflow</h1>
     <div id='nav_links'>
       <% if current_user %>
-        <%= link_to "Logout", logout_path, method: :delete %>
-        <%= link_to "View Profile", user_path(id: current_user.id) %>
+        <%= button_to "Logout", logout_path, :method => 'delete' %>
+        <%= button_to "View Profile", user_path(id: current_user.id), :method => 'get' %>
       <% else %>
-        <%= link_to "Sign In", login_path %>
-        <%= link_to "Sign Up", new_user_path %>
+        <%= button_to "Sign In", login_path, :method => 'get' %>
+        <%= button_to "Sign Up", new_user_path, :method => 'get' %>
       <% end %>
     </div>
   </header>
 
 <% flash.each do |key, value| %>
   <%= content_tag :div, value, class: "flash #{key}" %>
-<% end %> 
+<% end %>
 <%= yield %>
 
 </body>

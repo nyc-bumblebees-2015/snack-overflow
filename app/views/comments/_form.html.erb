@@ -1,5 +1,8 @@
-<%= form_for [commentable_type, comment] do |f| %>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-  <%= f.submit 'Post Comment'%>
-<% end %>
+<div class="comment_form">
+  <%= form_for [commentable_type, comment] do |f| %>
+    <div class="content">
+    <%= f.text_area :content %>
+    </div>
+    <%= f.submit 'Post Comment'%>
+  <% end %>
+</div>

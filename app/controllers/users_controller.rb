@@ -17,6 +17,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: current_user.id)
+    answers = Answer.where(user_id: current_user.id)
+    @questions = []
+    answers.each do |answer|
+      @questions << Question.find_by(id: answer.question_id)
+    end
+
   end
 
   def edit
@@ -40,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   private
+
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)

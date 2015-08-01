@@ -27,7 +27,7 @@
     <%= render partial: 'comments/form', locals: {commentable_type: @question, comment: @comment} %>
 
     <div class="suggested_answers">
-    <%= render @question.answers %>
+      <%= render sort_answer_by_most_votes(@question) %>
     </div>
 
     <div class="new_answer">

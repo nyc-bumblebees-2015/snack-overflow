@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     answer_or_question = get_answer_or_question
     comment = Comment.new(comment_params.merge(commentable: answer_or_question))
-
+    byebug
     if comment.save
       redirect_to question_path(get_question(answer_or_question))
     else

@@ -30,6 +30,12 @@ class Question < ActiveRecord::Base
     latest_answer.created_at if latest_answer
   end
 
+  def related_questions
+    if (self.tags.count > 0) && (self.tags.first.questions.count > 1)
+      self.tags.first.questions.sample(5)
+    end
+  end
+
   private
   def accepted_answer_belongs_to_question
     unless !accepted_answer || accepted_answer.question == self

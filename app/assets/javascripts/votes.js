@@ -5,11 +5,11 @@ $(document).ready(function(){
 
   $('.question_votes').on('click', 'a.upvote', function(event){
     event.preventDefault();
-    var params = getQuestionParams($(this), 'upvote');
+    var params = getVoteParams($(this), {voteType: 'Question', value: upvoteValue});
     postVote(params);
   }).on('click', 'a.downvote', function(event){
     event.preventDefault();
-    var params = getQuestionParams($(this), 'downvote');
+    var params = getVoteParams($(this), {voteType: 'Question', value: downvoteValue});
     postVote(params);
   });
 
@@ -21,13 +21,13 @@ $(document).ready(function(){
   
 });
 
-var getQuestionParams = function($elem, voteType){
-  var questionId = $elem.parent().data().questionId;
+var getVoteParams = function($elem, vote){
+    var questionId = $elem.parent().data().questionId;
+    var url = '/questions/' + questionId.toString() + '/votes';
   var $votes_total = $elem.siblings('.votes_total')
-  var url = '/questions/' + questionId.toString() + '/votes';
   var vote = {
-    voteable_type: 'Question',
-    vote_value: (voteType == 'upvote' ? upvoteValue : downvoteValue)
+    voteable_type: vote.voteType,
+    vote_value: vote.value
   };
   return {
     url: url, 

@@ -26,15 +26,16 @@ describe CommentsController do
         }.to change(Comment, :count).by(1)
       end
 
-      it 'redirects to question#show after commenting on a question' do
+      it 'renders the new comment after commenting on a question' do
         post :create, question_id: @question.id, comment: attributes_for(:question_comment)
-        expect(response).to redirect_to question_path(@question)
+        expect(response).to render_template partial: 'comments/comment', locals: {comment: @question_comment}
       end
 
-      it 'redirects to question#show after commenting on an answer' do
+      it 'renders the new comment after commenting on an answer' do
         post :create, answer_id: @answer.id, comment: attributes_for(:answer_comment)
-        expect(response).to redirect_to question_path(@question)
+        expect(response).to render_template partial: 'comments/comment', locals: {comment: @answer_comment}
       end
+
     end
 
     context 'without valid attributes' do

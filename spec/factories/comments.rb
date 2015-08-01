@@ -10,5 +10,6 @@ FactoryGirl.define do
     factory :answer_comment do
       association :commentable, factory: :answer
     end
+
   end
 end

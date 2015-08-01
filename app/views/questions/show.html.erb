@@ -1,26 +1,36 @@
 <h1><%= @question.title %></h1>
 
-<div class="question_main">
-  <div class="question_votes">
-    <%= @question.votes_total %>
-  </div>
-  <div class="question_content">
-    <%= @question.content %>
-  </div>
-  <div>
-    asked <%= @question.created_at %><br>
-    <%= @question.user.username %>
-  </div>
-</div>
+<div class="container">
+  <div class="question_main">
+    <div class="question_votes">
+      <%= @question.votes_total %>
+    </div>
+    <div class="question_content">
+      <%= @question.content %>
+      <ul>
+        <% @question.tags.each do |tag| %>
+          <li><%= tag.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      asked <%= @question.created_at %><br>
+      <%= @question.user.username %>
+    </div>
+    <%= render partial: 'comments/question_comment_form', locals: {question: @question, comment: @comment} %>
 
-<div class="suggested_answers">
-  <% @question.answers.each do |answer| %>
-    answered <%= answer.created_at %><br>
-    <div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
-  <% end %>
-</div>
+    <div class="suggested_answers">
+      <% @question.answers.each do |answer| %>
+        answered <%= answer.created_at %><br>
+        <div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
+        <%= render partial: 'comments/answer_comment_form', locals: {answer: answer, comment: @comment} %>
+      <% end %>
+    </div>
 
-<div class="new_answer">
-  <h2>Submit an answer</h2>
-  <%= render partial: "answers/form", locals: {question: @question} %>
-</div>
+    <div class="new_answer">
+      <h2>Submit an answer</h2>
+      <%= render partial: "answers/form", locals: {question: @question} %>
+    </div>
+  </div>
+
+  <%= render partial: "sidebar", locals: {question: @question} %></div>

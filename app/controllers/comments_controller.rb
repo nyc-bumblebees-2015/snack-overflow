@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
       flash[:success] = "Your comment has been added!"
       render comment
     else
-      flash[:error] = comment.errors.full_messages
-      redirect_to question_path(question)
+      error_message = "ERROR: your comment could not be saved"
+      render error_message
     end
   end
 

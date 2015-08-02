@@ -12,11 +12,11 @@ class Question < ActiveRecord::Base
   validate :accepted_answer_belongs_to_question
 
   def self.recent
-    Question.order(created_at: :desc).limit(10)
+    Question.order(created_at: :desc).limit(5)
   end
 
   def self.most_popular
-    Question.all.sort {|a, b| b.votes_total <=> a.votes_total}.shift(10)
+    Question.all.sort {|a, b| b.votes_total <=> a.votes_total}.shift(5)
   end
 
   def votes_total

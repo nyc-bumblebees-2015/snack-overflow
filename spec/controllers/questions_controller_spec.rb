@@ -58,17 +58,25 @@ describe QuestionsController do
   end
 
   describe 'POST #create' do
+    before :each do
+      @tags = [
+        attributes_for(:tag),
+        attributes_for(:tag),
+        attributes_for(:tag)
+      ]
+    end
+
     context "with valid attributes" do
       it "saves the new question in the database" do
         set_user_session create(:user)
         expect{
-          post :create, question: attributes_for(:question)
+          post :create, question: attributes_for(:question, tags_attributes: @tags)
         }.to change(Question, :count).by(1)
       end
 
       it "redirects to questions#show" do
         set_user_session create(:user)
-        post :create, question: attributes_for(:question)
+        post :create, question: attributes_for(:question, tags_attributes: @tags)
         expect(response).to redirect_to question_path(assigns[:question])
       end
     end
@@ -76,12 +84,12 @@ describe QuestionsController do
     context "without a current user" do
       it "does not save the new question in the database" do
         expect{
-          post :create, question: attributes_for(:question)
+          post :create, question: attributes_for(:question, tags_attributes: @tags)
         }.to_not change(Question, :count)
       end
 
       it "redirects to root" do
-        post :create, question: attributes_for(:question)
+        post :create, question: attributes_for(:question, tags_attributes: @tags)
         expect(response).to redirect_to root_path
       end
     end

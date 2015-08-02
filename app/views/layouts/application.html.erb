@@ -10,25 +10,30 @@
   <header id='nav_bar'>
     <a href="/">
       <img src="http://cdn.shopify.com/s/files/1/0302/2969/products/great-cookie-m_and_m-cookie-03_1024x1024.jpg?v=1390499314" width="50" height="50">
+      <h1 id='welcome'> SnackOverflow</h1>
     </a>
-    <h1 id='welcome'> Welcome To Snack Overflow</h1>
     <div id='nav_links'>
       <% if current_user %>
-        <%= button_to "Logout", logout_path, :method => 'delete' %>
-        <%= button_to "View Profile", user_path(id: current_user.id), :method => 'get' %>
+        <%= button_to "Logout", logout_path %>
+        <%= button_to "View Profile", user_path(id: current_user.id) %>
       <% else %>
-        <%= button_to "Sign In", login_path, :method => 'get' %>
-        <%= button_to "Sign Up", new_user_path, :method => 'get' %>
+        <%= button_to "Sign In", login_path %>
+        <%= button_to "Sign Up", new_user_path %>
       <% end %>
     </div>
   </header>
 
-  <div> <%= render 'layouts/nav' %> </div>
+    <div class="container secondary-header">
+      <%= render 'layouts/nav' %>
+    </div>
 
-<% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "flash #{key}" %>
-<% end %>
-<%= yield %>
+  <div class="container">
 
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
+
+    <%= yield %>
+  </div>
 </body>
 </html>

@@ -1,5 +1,28 @@
-<%= question.votes_total %> votes | <%= question.answers.count %> answers | <%= link_to question.title, question %>
-<br>
-<% if question.answers.count > 0 %>
-  asked <%= time_ago_in_words(question.answers.last.created_at) %> ago
-<% end %>
+<div class="question_stats">
+  <div class="question_stat">
+    <%= question.votes_total %><br>
+    votes
+  </div>
+
+  <div class="question_stat">
+    <%= question.answers.count %><br>
+    answers
+  </div>
+</div>
+<div class="question_attributes">
+  <div class="question_title">
+    <%= link_to question.title, question %>
+  </div>
+  <div class="question_excerpt">
+    <%= truncate( question.content, :length => 150, :separator => ' ') %>
+  </div>
+  <div class="question_creation">
+    <div class="question_created_at">
+      asked <%= time_ago_in_words(question.created_at) %> ago
+    </div>
+    <div class="question_creator">
+      <div class="creator_gravatar"><%= gravatar_for question.user %></div>
+      <div class="creator_name"><%= question.user.username %></div>
+    </div>
+  </div>
+</div>

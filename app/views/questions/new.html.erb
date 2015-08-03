@@ -1,0 +1,12 @@
+<h1>New Question</h1>
+<div class="new_question question_form">
+  <%= form_for @question do |f| %>
+    <%= render partial: 'form_fields', locals: {f: f} %>
+  <div class="tag_fields" id="tags">
+    <%= f.fields_for :tags do |tag| %>
+      <% render 'tags/tag_fields.html', f: tag %>
+    <% end %>
+  </div>
+    <%= f.submit "Create question" %>
+  <% end %>
+</div>

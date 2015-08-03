@@ -1,0 +1,14 @@
+.downvote, .upvote {
+  display:block;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent; 
+}
+
+.upvote {
+  border-bottom: 10px solid black;
+}
+.downvote {
+  border-top: 10px solid black;
+}

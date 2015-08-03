@@ -1,0 +1,9 @@
+<div class="related_questions">
+  <h4>Related Questions</h4>
+    <% question.related_questions.each do |related_q| %>
+      <div class="related_question">
+        <div class="related_q_vote_container"><span class="related_q_votes"><%= related_q.votes_total %></span></div>
+         <%= link_to related_q.title, related_q %>
+       </div>
+    <% end %>
+</div>

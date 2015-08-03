@@ -1,0 +1,18 @@
+
+  <div class="recent_questions">
+    <h3>Recent Questions</h3>
+      <% @recent_questions.each do |question| %>
+        <div class="question_summary">
+          <%= render partial: 'question', locals: {question: question} %>
+        </div>
+      <% end %>
+  </div>
+  <div class="popular_questions">
+    <h3>Popular Questions</h3>
+      <% @popular_questions.each do |question| %>
+        <div class="question_summary">
+         <%= render partial: 'question', locals: {question: question} %>
+        </div>
+      <% end %>
+  </div>
+

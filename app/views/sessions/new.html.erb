@@ -1,0 +1,16 @@
+<h1>Log In Form</h1>
+
+
+  <div class='bad_error'>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
+  </div>
+
+<%= form_for @user, url: login_path, method: 'post' do |f|  %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "Log In"%>
+<% end %>

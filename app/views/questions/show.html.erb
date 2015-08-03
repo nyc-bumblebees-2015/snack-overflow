@@ -1,0 +1,48 @@
+<div id="question-header"><h2><%= @question.title %></h2></div>
+<div class="question_page">
+ <div class="question">
+
+    <div class="question_main">
+      <div class="question_full">
+        <div class="votes question_votes" data-question-id="<%= @question.id %>">
+          <a class="upvote" href="#"></a>
+          <div class="votes_total"><%= @question.votes_total %></div>
+          <a class="downvote" href="#"></a>
+        </div>
+        <div class="question_content">
+          <%= @question.content %>
+          <ul>
+            <% @question.tags.each do |tag| %>
+              <li><%= tag.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+        <div class="question_creater_box">
+          asked <%= @question.created_at %><br>
+          <div class="question_creator">
+            <div class="creator_gravatar"><%= gravatar_for @question.user %></div>
+            <div class="creator_name"><%= @question.user.username %></div>
+          </div>
+        </div>
+    </div>
+
+        <div class="display_comments question_comments">
+          <%= render @question.comments %>
+        </div>
+
+        <%= render partial: 'comments/form', locals: {commentable_type: @question, comment: @comment} %>
+
+        <div class="suggested_answers">
+          <h4><%= @question.answers.count %> Answers</h4>
+          <%= render sort_answer_by_most_votes(@question) %>
+        </div>
+
+        <div class="new_answer">
+          <h2>Submit an answer</h2>
+          <%= render partial: "answers/form", locals: {question: @question} %>
+        </div>
+      </div>
+
+  <%= render partial: "sidebar", locals: {question: @question} %>
+</div>

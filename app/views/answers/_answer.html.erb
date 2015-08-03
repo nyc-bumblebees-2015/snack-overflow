@@ -1,0 +1,19 @@
+<div class="answer">
+  <div class="answer_voting">
+    <div class="votes answer_votes" data-answer-id="<%= answer.id %>">
+      <a class="upvote" href="#"></a>
+      <div class="votes_total"><%= answer.votes_total %></div>
+      <a class="downvote" href="#"></a>
+    </div>
+   </div>
+  <div class="answer_details">
+    answered <%= answer.created_at %><br>
+    <div class="suggested_answer"><%= answer.content %> - <%= answer.user.username %></div>
+
+    <div class="display_comments answer_comments">
+      <%= render answer.comments %>
+    </div>
+    <%= render partial: 'comments/form', locals: {commentable_type: answer, comment: @comment} %>
+  </div>
+</div>
+
